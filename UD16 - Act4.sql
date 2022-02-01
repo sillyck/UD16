@@ -1,0 +1,12 @@
+USE actividades;
+SELECT NOMBRE FROM peliculas;
+SELECT DISTINCT CALIFICACIONEDAD FROM peliculas;
+SELECT NOMBRE FROM peliculas where CALIFICACIONEDAD is null;
+SELECT NOMBRE FROM salas where PELICULA is null;
+SELECT * FROM salas s left outer join peliculas p on s.PELICULA = p.CODIGO;
+SELECT * FROM salas s right outer join peliculas p on s.PELICULA = p.CODIGO;
+SELECT p.NOMBRE FROM salas s right outer join peliculas p on s.PELICULA = p.CODIGO where PELICULA is null;
+INSERT INTO peliculas VALUES ('10', 'Uno, Dos, Tres', 'PG-7');
+SET SQL_SAFE_UPDATES = 0;
+UPDATE peliculas set CALIFICACIONEDAD = "NC-13" where CALIFICACIONEDAD is null;
+DELETE FROM salas WHERE PELICULA IN(SELECT CODIGO FROM peliculas where CALIFICACIONEDAD = "G");
