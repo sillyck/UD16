@@ -1,0 +1,41 @@
+/* 2.1 */ SELECT APELLIDOS FROM empleados; 
+
+/* 2.2 */ SELECT DISTINCT(APELLIDOS) FROM empleados; 
+
+/* 2.3 */ SELECT * FROM empleados WHERE APELLIDOS = 'Lopez'; 
+
+/* 2.4 */ SELECT * FROM empleados WHERE APELLIDOS = 'Lopez' OR APELLIDOS = 'Perez'; 
+
+/* 2.5 */ SELECT * FROM empleados WHERE DEPARTAMENTO = 14; 
+
+/* 2.6 */ SELECT * FROM empleados WHERE DEPARTAMENTO = 37 OR DEPARTAMENTO = 77; 
+
+/* 2.7 */ SELECT * FROM empleados WHERE Apellidos Like 'P%'; 
+
+/* 2.8 */ SELECT SUM(PRESUPUESTO) FROM departamentos; 
+
+/* 2.9 */ SELECT COUNT(*), DEPARTAMENTO FROM empleados GROUP BY DEPARTAMENTO; 
+
+/* 2.10 */ SELECT * FROM empleados e INNER JOIN departamentos d ON e.DEPARTAMENTO = d.CODIGO; 
+
+/* 2.11 */ SELECT e.NOMBRE, e.APELLIDOS, d.PRESUPUESTO FROM empleados e INNER JOIN departamentos d ON e.DEPARTAMENTO = d.CODIGO; 
+
+/* 2.12 */ SELECT e.NOMBRE, e.APELLIDOS FROM empleados e INNER JOIN departamentos d WHERE e.DEPARTAMENTO = d.CODIGO AND PRESUPUESTO > 60000; 
+
+/* 2.13 */ SELECT * FROM departamentos WHERE PRESUPUESTO > (SELECT avg(PRESUPUESTO) FROM departamentos); 
+
+/* 2.14 */ SELECT d.NOMBRE FROM departamentos d INNER JOIN empleados e WHERE d.CODIGO = e.DEPARTAMENTO GROUP BY e.DEPARTAMENTO HAVING COUNT(*) > 2;
+
+/* 2.15 */ INSERT INTO departamentos (CODIGO, NOMBRE, PRESUPUESTO) VALUES (11, 'Calidad', 40000);
+		   INSERT INTO empleados (DNI, NOMBRE, APELLIDOS, DEPARTAMENTO) VALUES (89267109, 'Esther', 'Vázquez', 11); 
+        
+/* 2.16 */ UPDATE departamentos SET PRESUPUESTO = PRESUPUESTO * 0.9; 
+
+/* 2.17 */ UPDATE empleados SET DEPARTAMENTO = 14 WHERE DEPARTAMENTO = 77; 
+
+/* 2.18 */ DELETE FROM empleados WHERE DEPARTAMENTO = 14;
+
+/* 2.19 */ DELETE FROM empleados WHERE DEPARTAMENTO IN (SELECT CODIGO FROM departamentos WHERE PRESUPUESTO >= 60000);
+
+/* 2.20 */ DELETE FROM empleados;
+
